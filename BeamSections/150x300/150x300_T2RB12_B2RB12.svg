@@ -1,0 +1,71 @@
+<svg width="1200" height="900" viewBox="-300 -300 1200 900">
+
+
+
+<rect x="0" y="0" width ="150" height="300" fill='none' stroke="black" stroke-width="5"/>
+
+<rect x="25" y="25" width="100" height="250" style="fill:none;stroke:black;" stroke-width="6" rx="12"/>
+
+<g fill='black' stroke='black' stroke-width="3.6">
+	<circle cx='35' cy='35' r='6'  />
+	<circle cx='115' cy='35' r='6'  />
+
+	<circle cx='35' cy='265' r='6'  />
+	<circle cx='115' cy='265' r='6'  />
+
+</g>
+<!--  dimension  -->
+<g stroke="black" stroke-width="3.6">
+  <line x1='-50' x2='200' y1='-150' y2='-150'/>
+  <line x1='0' x2='0' y1='-25' y2='-175'/>
+  <line x1='150' x2='150' y1='-25' y2='-175'/>  
+  <line x1='-15' x2='15' y1='-135' y2='-165'/>
+  <line x1='135' x2='165' y1='-135' y2='-165'/>
+
+
+  <line x1='-150' x2='-150' y1='-50' y2='350'/>
+  <line x1='-25' x2='-175' y1='0' y2='0'/>
+  <line x1='-25' x2='-175' y1='300' y2='300'/>  
+  <line x1='-165' x2='-135' y1='15' y2='-15'/>
+  <line x1='-165' x2='-135' y1='315' y2='285'/>
+  
+  <g stroke="none">
+    <text x='75' y='-155' text-anchor='middle' font-size='80' font-family='Arial'>0.15</text>
+     <text x='-155' y='150' text-anchor='middle' font-size='80' font-family='Arial'  transform="rotate(-90 -155 200)">0.30</text>
+  </g>
+</g>
+
+<g>
+  <text x='350' y='-50' text-anchor='start' font-size='80' font-family='Arial'>2-Ø12มม</text>
+  <text x='350' y='390' text-anchor='start' font-size='80' font-family='Arial'>2-Ø12มม</text>
+
+  <text x='350' y='130' text-anchor='start' font-size='80' font-family='Arial'>ปØ6มม@0.15ม</text>
+  
+</g>
+
+<!-- Label -->
+<g>
+  <text x='-60' y='520' font-size='100' font-family='Arial' freecad:editable="FC-TestText">
+     <tspan>B1</tspan>
+  </text>
+  <text x='150' y='520' font-size='100' font-family='Arial'>1:20</text>
+  <line x1="-65" x2="350" y1="530" y2="530" stroke="black" stroke-width="5"/>
+</g>
+
+<!-- ledger line -->
+<g stroke="black" stroke-width="3.6">
+   <line x1="35" x2="95" y1="35" y2="-65"/>
+   <line x1="115" x2="175" y1="35" y2="-65"/>
+   <line x1="95" x2="330" y1="-65" y2="-65"/>
+   
+   <line x1="35" x2="95" y1="265" y2="365"/>
+   <line x1="115" x2="175" y1="265" y2="365"/>
+   <line x1="95" x2="330" y1="365" y2="365"/>
+   
+
+   
+   <line x1="125" x2="330" y1="120" y2="120"/>   
+   
+</g>
+
+</svg>
