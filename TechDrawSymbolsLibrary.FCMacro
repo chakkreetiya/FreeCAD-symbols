@@ -24,8 +24,8 @@
 #*                                                                         *
 #***************************************************************************
 
-__title__="FreeCAD TechDraw Symbols Library Macro"
-__author__ = "Chakkree Tiyawongsuwan"
+__title__="FreeCAD Symbols Library Macro"
+__author__ = "Yorik van Havre"
 __url__ = "http://www.freecadweb.org"
 
 '''
@@ -69,7 +69,7 @@ class ExpDockWidget(QtGui.QDockWidget):
         QtGui.QDockWidget.__init__(self)
 
         self.setObjectName("SymbolsLibrary")
-        self.setWindowTitle("TechDraw Symbols Library")
+        self.setWindowTitle("Symbols Library")
 
         # setting up a directory model that shows only svg files
         self.dirmodel = QtGui.QFileSystemModel()
@@ -117,10 +117,12 @@ class ExpDockWidget(QtGui.QDockWidget):
 
     def doubleclicked(self, index):
         path = self.dirmodel.filePath(index)
-        page = None
-        """
+        page = None        
         for o in FreeCADGui.Selection.getSelection():
             if o.isDerivedFrom("Drawing::FeaturePage"):
+                page = o
+                break
+            if o.isDerivedFrom("TechDraw::DrawPage"):
                 page = o
                 break
         if not page:
@@ -128,24 +130,27 @@ class ExpDockWidget(QtGui.QDockWidget):
                 if o.isDerivedFrom("Drawing::FeaturePage"):
                     page = o
                     break
-        """
-        Msg(FreeCADGui.Selection.getSelection()[0]); Msg('\n')
-        if FreeCADGui.Selection.getSelection()[0].isDerivedFrom("TechDraw::DrawPage"):
-            page = FreeCADGui.Selection.getSelection()[0]
+                if o.isDerivedFrom("TechDraw::DrawPage"):
+                    page = o
+                    break
         Msg(page); Msg('\n')
         if page:
-            Msg("Working!\n")
-            import TechDraw
             f = open(path)
             svg = f.read()
             f.close()
-            Symbol=FreeCAD.ActiveDocument.addObject('TechDraw::DrawViewSymbol','Symbol')
-            Symbol.Symbol = svg
-            page.addView(Symbol)
+            if page.isDerivedFrom("Drawing::FeaturePage"):
+                import Drawing
+                s = FreeCAD.ActiveDocument.addObject('Drawing::FeatureViewSymbol','Symbol')
+                s.Symbol = Drawing.removeSvgTags(svg)
+                page.addObject(s)                
+            if page.isDerivedFrom("TechDraw::DrawPage"):
+                import TechDraw
+                Symbol=FreeCAD.ActiveDocument.addObject('TechDraw::DrawViewSymbol','Symbol')
+                Symbol.Symbol = svg
+                page.addView(Symbol)
             FreeCAD.ActiveDocument.recompute()
         else:
             FreeCAD.Console.PrintError("No page found either in the selection or the document")
-
 
 if QtCore.QDir(LIBRARYPATH).exists():
     m = FreeCADGui.getMainWindow()
